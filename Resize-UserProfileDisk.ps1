@@ -313,7 +313,7 @@ function Resize-UserProfileDisk {
                 try {
                     Write-Log -severity Information -message " "
                     Write-Log -severity Information -message "Defrag: Try to mount VHDX-file $vhdx..."
-                    $MountResult = Mount-DiskImage $vhdx
+                    $MountResult = Mount-VHD -Path $vhdx -PassThru
                     Start-Sleep -Seconds 15
                     Write-Log -severity Information -message "Defrag: Try to mount VHDX-file $vhdx... Done"
                 }
@@ -349,7 +349,7 @@ function Resize-UserProfileDisk {
                     Start-sleep -Seconds 10
                     Write-Log -severity Information -message "Defrag: Try to dismount VHDX-file $vhdx..."
                     try {
-                        Dismount-DiskImage $vhdx | Out-Null
+                        Dismount-VHD $vhdx | Out-Null
                         Write-Log -severity Information -message "Defrag: Try to dismount VHDX-file $vhdx... Done"
                     }
                     Catch {
@@ -390,7 +390,7 @@ function Resize-UserProfileDisk {
                 try {
                     Write-Log -severity Information -message " "
                     Write-Log -severity Information -message "SDelete: Try to mount VHDX-file $vhdx..."
-                    $MountResult = Mount-DiskImage $vhdx
+                    $MountResult = Mount-VHD -Path $vhdx -PassThru
                     Start-Sleep -Seconds 7
                     Write-Log -severity Information -message "SDelete: Try to mount VHDX-file $vhdx... Done"
                 }
@@ -424,7 +424,7 @@ function Resize-UserProfileDisk {
                     
                 Write-Log -severity Information -message "SDelete: Try to dismount VHDX-file $vhdx..."
                 try {
-                    Dismount-DiskImage $vhdx | Out-Null
+                    Dismount-VHD $vhdx | Out-Null
                 }
                 Catch {
                     $error.clear()
